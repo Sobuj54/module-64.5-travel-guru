@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="navbar bg-base-100 w-10/12 mx-auto flex justify-between">
+    <div className="navbar bg-base-100 w-10/12 mx-auto flex justify-between mt-4">
       <div className="flex-none gap-8">
         <div className="h-[56px] w-[120px]">
           <img src={logo}></img>
