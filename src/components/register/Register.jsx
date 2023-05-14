@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="w-1/4 mx-auto rounded-md border-2 p-6 mt-12">
-      <h3 className="text-2xl font-bold">Login</h3>
+      <h3 className="text-2xl font-bold">Create an Account</h3>
 
       <form className="mt-5">
         <input
@@ -21,21 +21,18 @@ const Login = () => {
           placeholder="password"
           required
         />
-        <div className="flex items-center mt-3">
-          <input type="checkbox" className="checkbox mr-2" />
-          <small>Remember me</small>
-        </div>
+
         <button type="submit" className="btn btn-warning  mt-6 w-full">
-          Login
+          create an account
         </button>
       </form>
       <p className="mt-3 text-center">
         <small>
-          Don't have an account? <Link to="/register">Create an Account</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </small>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default Register;
