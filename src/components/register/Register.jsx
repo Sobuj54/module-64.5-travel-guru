@@ -9,6 +9,20 @@ const Register = () => {
       <form className="mt-5">
         <input
           className="border px-4 py-2 rounded w-full"
+          type="text"
+          name="first"
+          placeholder="First name"
+          required
+        />
+        <input
+          className="border mt-4 px-4 py-2 rounded w-full"
+          type="text"
+          name="last"
+          placeholder="Last name"
+          required
+        />
+        <input
+          className="border mt-4 px-4 py-2 rounded w-full"
           type="email"
           name="email"
           placeholder="email"
@@ -19,6 +33,13 @@ const Register = () => {
           type="password"
           name="password"
           placeholder="password"
+          required
+        />
+        <input
+          className="block mt-4 border px-4 py-2 rounded w-full"
+          type="password"
+          name="confirm"
+          placeholder="Confirm password"
           required
         />
 
