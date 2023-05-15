@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -12,8 +13,12 @@ import app from "../firebase/firebase.config";
 
 export const TravelContext = createContext(null);
 
+// firebase authentication
 export const auth = getAuth(app);
+// google authentication provider
 export const googleProvider = new GoogleAuthProvider();
+//facebook authentication provider
+export const facebookProvider = new FacebookAuthProvider();
 
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -41,11 +46,22 @@ const AuthContext = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+  const facebookLogIn = () => {
+    return signInWithPopup(auth, facebookProvider);
+  };
+
   const logOut = () => {
     return signOut(auth);
   };
 
-  const placeInfo = { user, signUp, signIn, logOut, googleLogIn };
+  const placeInfo = {
+    user,
+    signUp,
+    signIn,
+    logOut,
+    googleLogIn,
+    facebookLogIn,
+  };
 
   return (
     <TravelContext.Provider value={placeInfo}>

@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { TravelContext } from "../../provider/AuthContext";
 
+import { FaGoogle, FaFacebook } from "react-icons/fa";
+
 const Register = () => {
   const { signUp } = useContext(TravelContext);
   const [error, setError] = useState(null);
@@ -82,6 +84,20 @@ const Register = () => {
         </small>
       </p>
       <p className="text-red-800 text-sm text-center mt-3">{error}</p>
+      <div className="mt-3 text-center">
+        <hr />
+        or <hr />
+      </div>
+      <div className="mt-4">
+        <button className="btn btn-outline btn-secondary w-full">
+          <FaFacebook />
+          <span className="flex-grow">Continue with Facebook</span>
+        </button>
+        <button className="btn btn-outline btn-primary w-full mt-2">
+          <FaGoogle />
+          <span className="flex-grow">Continue with Google</span>
+        </button>
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { TravelContext } from "../../provider/AuthContext";
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 const Login = () => {
-  const { signIn, googleLogIn } = useContext(TravelContext);
+  const { signIn, googleLogIn, facebookLogIn } = useContext(TravelContext);
   const [agreed, setAgreed] = useState(true);
   const navigate = useNavigate();
 
@@ -30,6 +30,17 @@ const Login = () => {
 
   const handleGoogleLogIn = () => {
     googleLogIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleFacebookLogIn = () => {
+    facebookLogIn()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
@@ -82,7 +93,9 @@ const Login = () => {
         or <hr />
       </div>
       <div className="mt-4">
-        <button className="btn btn-outline btn-secondary w-full">
+        <button
+          onClick={handleFacebookLogIn}
+          className="btn btn-outline btn-secondary w-full">
           <FaFacebook />
           <span className="flex-grow">Continue with Facebook</span>
         </button>
