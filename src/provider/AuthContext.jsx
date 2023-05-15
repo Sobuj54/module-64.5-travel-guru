@@ -1,9 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -11,6 +13,7 @@ import app from "../firebase/firebase.config";
 export const TravelContext = createContext(null);
 
 export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
 
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -34,11 +37,15 @@ const AuthContext = ({ children }) => {
     };
   }, []);
 
+  const googleLogIn = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+
   const logOut = () => {
     return signOut(auth);
   };
 
-  const placeInfo = { user, signUp, signIn, logOut };
+  const placeInfo = { user, signUp, signIn, logOut, googleLogIn };
 
   return (
     <TravelContext.Provider value={placeInfo}>

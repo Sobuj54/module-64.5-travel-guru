@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { TravelContext } from "../../provider/AuthContext";
+import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 const Login = () => {
-  const { signIn } = useContext(TravelContext);
+  const { signIn, googleLogIn } = useContext(TravelContext);
   const [agreed, setAgreed] = useState(true);
   const navigate = useNavigate();
 
@@ -27,10 +28,20 @@ const Login = () => {
       });
   };
 
+  const handleGoogleLogIn = () => {
+    googleLogIn()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="w-1/4 mx-auto rounded-md border-2 p-6 mt-12">
       <h3 className="text-2xl font-bold">Login</h3>
-
       <form onSubmit={handleLogIn} className="mt-5">
         <input
           className="border px-4 py-2 rounded w-full"
@@ -66,6 +77,22 @@ const Login = () => {
           Don't have an account? <Link to="/register">Create an Account</Link>
         </small>
       </p>
+      <div className="mt-3 text-center">
+        <hr />
+        or <hr />
+      </div>
+      <div className="mt-4">
+        <button className="btn btn-outline btn-secondary w-full">
+          <FaFacebook />
+          <span className="flex-grow">Continue with Facebook</span>
+        </button>
+        <button
+          onClick={handleGoogleLogIn}
+          className="btn btn-outline btn-primary w-full mt-2">
+          <FaGoogle />
+          <span className="flex-grow">Continue with Google</span>
+        </button>
+      </div>
     </div>
   );
 };
