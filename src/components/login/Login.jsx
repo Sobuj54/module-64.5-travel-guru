@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TravelContext } from "../../provider/AuthContext";
 
 const Login = () => {
   const { signIn } = useContext(TravelContext);
   const [agreed, setAgreed] = useState(true);
+  const navigate = useNavigate();
 
   const handleLogIn = (event) => {
     event.preventDefault();
@@ -19,6 +20,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
