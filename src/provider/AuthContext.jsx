@@ -1,5 +1,9 @@
 import React, { createContext } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import app from "../firebase/firebase.config";
 
 export const TravelContext = createContext(null);
@@ -11,7 +15,11 @@ const AuthContext = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const placeInfo = { signUp };
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const placeInfo = { signUp, signIn };
 
   return (
     <TravelContext.Provider value={placeInfo}>
