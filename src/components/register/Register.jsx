@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { TravelContext } from "../../provider/AuthContext";
 
 const Register = () => {
-  const { singUp } = useContext(TravelContext);
+  const { signUp } = useContext(TravelContext);
   const [error, setError] = useState(null);
 
   const handleRegister = (event) => {
@@ -19,8 +19,16 @@ const Register = () => {
       setError("password did not match");
       return;
     }
-
     console.log(email, password);
+
+    signUp(email, password)
+      .then((result) => {
+        const newUser = result.user;
+        console.log(newUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
