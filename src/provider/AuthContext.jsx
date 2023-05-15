@@ -1,7 +1,15 @@
-import React from "react";
+import React, { createContext } from "react";
 
-const AuthContext = () => {
-  return <div></div>;
+export const TravelContext = createContext(null);
+
+const AuthContext = ({ children }) => {
+  const placeInfo = {};
+
+  return (
+    <TravelContext.Provider value={placeInfo}>
+      {children}
+    </TravelContext.Provider>
+  );
 };
 
 export default AuthContext;
