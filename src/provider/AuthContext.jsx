@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -26,14 +27,18 @@ const AuthContext = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
-      setUser(currentUser.email);
+      setUser(currentUser);
     });
     return () => {
       return unsubscribe();
     };
   }, []);
 
-  const placeInfo = { user, signUp, signIn };
+  const logOut = () => {
+    return signOut(auth);
+  };
+
+  const placeInfo = { user, signUp, signIn, logOut };
 
   return (
     <TravelContext.Provider value={placeInfo}>

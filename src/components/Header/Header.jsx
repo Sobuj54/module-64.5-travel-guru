@@ -4,7 +4,17 @@ import { Link } from "react-router-dom";
 import { TravelContext } from "../../provider/AuthContext";
 
 const Header = () => {
-  const { user } = useContext(TravelContext);
+  const { user, logOut } = useContext(TravelContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        console.log("succesfully logged out");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="navbar bg-base-100 w-10/12 mx-auto flex justify-between mt-4">
@@ -27,10 +37,12 @@ const Header = () => {
         <Link>Contact</Link>
 
         {user ? (
-          <Link to="/login">
-            <span className="text-green-800">{user}</span>
-            <button className="btn btn-warning ml-2">Logout</button>
-          </Link>
+          <>
+            <span className="text-green-500">{user.email}</span>
+            <button onClick={handleLogOut} className="btn btn-warning ml-2">
+              Logout
+            </button>
+          </>
         ) : (
           <Link to="/login">
             <button className="btn btn-warning">Login</button>
